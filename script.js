@@ -1,211 +1,201 @@
- let currentQuestion = 0;
-        let totalScore = 0;
-        let badges = [];
-        let answers = {};
+let currentQuestion = 0;
+let totalScore = 0;
+let badges = [];
+let answers = {};
 
-        function startGame() {
-            document.getElementById('startScreen').style.display = 'none';
-            showQuestion(1);
-            updateProgress();
-        }
+function startGame() {
+    document.getElementById('startScreen').style.display = 'none';
+    showQuestion(1);
+    updateProgress();
+}
 
-        function showQuestion(questionNum) {
-            // Hide all questions
-            const questions = document.querySelectorAll('.question-container');
-            questions.forEach(q => q.classList.remove('active'));
+function showQuestion(questionNum) {
+    // Hide all questions
+    const questions = document.querySelectorAll('.question-container');
+    questions.forEach(q => q.classList.remove('active'));
 
-            // Show current question
-            document.getElementById(`question${questionNum}`).classList.add('active');
-            currentQuestion = questionNum;
-            updateProgress();
-        }
+    // Show current question
+    document.getElementById(`question${questionNum}`).classList.add('active');
+    currentQuestion = questionNum;
+    updateProgress();
+}
 
-        function selectOption(questionNum, points, badge) {
-            // Remove previous selections
-            const options = document.querySelectorAll(`#question${questionNum} .option`);
-            options.forEach(opt => opt.classList.remove('selected'));
+function selectOption(questionNum, points, badge) {
+    // Remove previous selections
+    const options = document.querySelectorAll(`#question${questionNum} .option`);
+    options.forEach(opt => opt.classList.remove('selected'));
 
-            // Add selection to clicked option
-            event.currentTarget.classList.add('selected');
+    // Add selection to clicked option
+    event.currentTarget.classList.add('selected');
 
-            // Store answer
-            answers[`question${questionNum}`] = {
-                points: points,
-                badge: badge,
-                value: event.currentTarget.dataset.value
-            };
+    // Store answer
+    answers[`question${questionNum}`] = {
+        points: points,
+        badge: badge,
+        value: event.currentTarget.dataset.value
+    };
 
-            // Wait a bit then move to next question
-            setTimeout(() => {
-                nextQuestion(questionNum);
-            }, 800);
-        }
+    // Wait a bit then move to next question
+    setTimeout(() => {
+        nextQuestion(questionNum);
+    }, 800);
+}
 
-        function toggleCheckbox(checkboxId) {
-            const checkbox = document.getElementById(checkboxId);
-            const item = checkbox.parentElement;
+function toggleCheckbox(checkboxId) {
+    const checkbox = document.getElementById(checkboxId);
+    const item = checkbox.parentElement;
 
-            // Handle "nenhuma" exclusive selection
-            if (checkboxId === 'nenhuma') {
-                if (checkbox.checked) {
-                    // Uncheck all others
-                    document.querySelectorAll('#question4 input[type="checkbox"]').forEach(cb => {
-                        if (cb.id !== 'nenhuma') {
-                            cb.checked = false;
-                            cb.parentElement.classList.remove('selected');
-                        }
-                    });
+    // Handle "nenhuma" exclusive selection
+    if (checkboxId === 'nenhuma') {
+        if (checkbox.checked) {
+            // Uncheck all others
+            document.querySelectorAll('#question4 input[type="checkbox"]').forEach(cb => {
+                if (cb.id !== 'nenhuma') {
+                    cb.checked = false;
+                    cb.parentElement.classList.remove('selected');
                 }
-            } else {
-                // If selecting others, uncheck "nenhuma"
-                const nenhuma = document.getElementById('nenhuma');
-                if (nenhuma.checked) {
-                    nenhuma.checked = false;
-                    nenhuma.parentElement.classList.remove('selected');
-                }
-            }
-
-            checkbox.checked = !checkbox.checked;
-            item.classList.toggle('selected', checkbox.checked);
-
-            // Enable continue button if at least one is selected
-            const anyChecked = document.querySelectorAll('#question4 input[type="checkbox"]:checked').length > 0;
-            document.getElementById('socialBtn').disabled = !anyChecked;
-        }
-
-        function nextQuestion(questionNum) {
-            // Calculate points for current question
-            if (questionNum === 4) {
-                // Handle multiple selection for social media
-                let questionPoints = 0;
-                let questionBadges = [];
-
-                const checkboxes = document.querySelectorAll('#question4 input[type="checkbox"]:checked');
-                checkboxes.forEach(cb => {
-                    questionPoints += parseInt(cb.value);
-                    const badgeElement = cb.parentElement.querySelector('.badge');
-                    if (badgeElement) {
-                        questionBadges.push(badgeElement.textContent.trim());
-                    }
-                });
-
-                answers[`question${questionNum}`] = {
-                    points: questionPoints,
-                    badges: questionBadges,
-                    values: Array.from(checkboxes).map(cb => cb.id)
-                };
-            }
-
-            // Add points and badges
-            const answer = answers[`question${questionNum}`];
-            if (answer) {
-                totalScore += answer.points;
-                if (answer.badge) badges.push(answer.badge);
-                if (answer.badges) badges = badges.concat(answer.badges);
-            }
-
-            updateScore();
-
-            // Move to next question or show result
-            if (questionNum < 7) {
-                showQuestion(questionNum + 1);
-            } else {
-                showResult();
-            }
-        }
-
-        function updateScore() {
-            document.getElementById('currentScore').textContent = totalScore;
-        }
-
-        function updateProgress() {
-            const progress = ((currentQuestion) / 7) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
-        }
-
-        function showResult() {
-            document.querySelector('.question-container.active').classList.remove('active');
-            document.getElementById('resultScreen').style.display = 'block';
-            updateProgress();
-
-            let profile, avatar, description;
-
-            if (totalScore <= 300) {
-                profile = "🌱 Iniciante Digital";
-                avatar = "🌱";
-                description = "Você está no início da sua jornada digital! Tem muito potencial para crescer e construir uma marca médica sólida. Vamos trabalhar as bases juntos!";
-            } else if (totalScore <= 600) {
-                profile = "🚀 Crescimento Acelerado";
-                avatar = "🚀";
-                description = "Você já tem movimento e está no caminho certo! É hora de estruturar melhor sua estratégia e acelerar seu crescimento no branding médico.";
-            } else {
-                profile = "👑 Expert em Construção";
-                avatar = "👑";
-                description = "Impressionante! Você já é um profissional estabelecido no digital. Vamos refinar sua estratégia e expandir ainda mais sua marca médica.";
-            }
-
-            document.getElementById('resultTitle').textContent = profile;
-            document.getElementById('resultAvatar').textContent = avatar;
-            document.getElementById('resultDescription').textContent = description;
-
-            // Show earned badges
-            const badgesContainer = document.getElementById('badgesEarned');
-            badgesContainer.innerHTML = '';
-            const uniqueBadges = [...new Set(badges)];
-            uniqueBadges.forEach(badge => {
-                const badgeElement = document.createElement('div');
-                badgeElement.className = 'earned-badge';
-                badgeElement.textContent = badge;
-                badgesContainer.appendChild(badgeElement);
             });
         }
+    } else {
+        // If selecting others, uncheck "nenhuma"
+        const nenhuma = document.getElementById('nenhuma');
+        if (nenhuma.checked) {
+            nenhuma.checked = false;
+            nenhuma.parentElement.classList.remove('selected');
+        }
+    }
 
-        function shareResult(platform) {
-            const profile = document.getElementById('resultTitle').textContent;
-            const score = totalScore;
-            const text = `Acabei de descobrir meu perfil no Branding Médico: ${profile} com ${score} pontos! 🏥✨ #BrandingMedico #MedicinaDigital`;
+    checkbox.checked = !checkbox.checked;
+    item.classList.toggle('selected', checkbox.checked);
 
-            if (platform === 'linkedin') {
-                window.open(`https://www.linkedin.com/sharing/share-offsite/?url=&text=${encodeURIComponent(text)}`);
-            } else if (platform === 'instagram') {
-                navigator.clipboard.writeText(text).then(() => {
-                    alert('Texto copiado! Cole no seu Instagram Stories 📱');
-                });
+    // Enable continue button if at least one is selected
+    const anyChecked = document.querySelectorAll('#question4 input[type="checkbox"]:checked').length > 0;
+    document.getElementById('socialBtn').disabled = !anyChecked;
+}
+
+function nextQuestion(questionNum) {
+    // Calculate points for current question
+    if (questionNum === 4) {
+        // Handle multiple selection for social media
+        let questionPoints = 0;
+        let questionBadges = [];
+
+        const checkboxes = document.querySelectorAll('#question4 input[type="checkbox"]:checked');
+        checkboxes.forEach(cb => {
+            questionPoints += parseInt(cb.value);
+            const badgeElement = cb.parentElement.querySelector('.badge');
+            if (badgeElement) {
+                questionBadges.push(badgeElement.textContent.trim());
             }
-        }
+        });
 
-        function resetGame() {
-            currentQuestion = 0;
-            totalScore = 0;
-            badges = [];
-            answers = {};
+        answers[`question${questionNum}`] = {
+            points: questionPoints,
+            badges: questionBadges,
+            values: Array.from(checkboxes).map(cb => cb.id)
+        };
+    }
 
-            document.getElementById('resultScreen').style.display = 'none';
-            document.getElementById('startScreen').style.display = 'block';
+    // Add points and badges
+    const answer = answers[`question${questionNum}`];
+    if (answer) {
+        totalScore += answer.points;
+        if (answer.badge) badges.push(answer.badge);
+        if (answer.badges) badges = badges.concat(answer.badges);
+    }
 
-            // Reset all selections
-            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-            document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-                cb.checked = false;
-                cb.parentElement.classList.remove('selected');
-            });
+    // Move to next question or show result
+    if (questionNum < 7) {
+        showQuestion(questionNum + 1);
+    } else {
+        showResult();
+    }
+}
 
-            updateScore();
-            document.getElementById('progressBar').style.width = '0%';
-        }
+function updateProgress() {
+    const progress = ((currentQuestion) / 7) * 100;
+    document.getElementById('progressBar').style.width = progress + '%';
+}
 
-        // Initialize
-        updateScore();
+function showResult() {
+    document.querySelector('.question-container.active').classList.remove('active');
+    document.getElementById('resultScreen').style.display = 'block';
+    updateProgress();
 
-        function shareToWhatsApp() {
-            // Captura os dados do resultado
-            const profile = document.getElementById('resultTitle').textContent;
-            const score = totalScore;
-            const uniqueBadges = [...new Set(badges)];
-            const badgesText = uniqueBadges.length > 0 ? uniqueBadges.join(', ') : 'Nenhuma badge conquistada';
+    let profile, avatar, description;
 
-            // Monta o texto que acompanha o compartilhamento
-            const message = `🏥 *MEU RESULTADO - BRANDING MÉDICO* 🏥
+    if (totalScore <= 300) {
+        profile = "🌱 Iniciante Digital";
+        avatar = "🌱";
+        description = "Você está no início da sua jornada digital! Tem muito potencial para crescer e construir uma marca médica sólida. Vamos trabalhar as bases juntos!";
+    } else if (totalScore <= 600) {
+        profile = "🚀 Crescimento Acelerado";
+        avatar = "🚀";
+        description = "Você já tem movimento e está no caminho certo! É hora de estruturar melhor sua estratégia e acelerar seu crescimento no branding médico.";
+    } else {
+        profile = "👑 Expert em Construção";
+        avatar = "👑";
+        description = "Impressionante! Você já é um profissional estabelecido no digital. Vamos refinar sua estratégia e expandir ainda mais sua marca médica.";
+    }
+
+    document.getElementById('resultTitle').textContent = profile;
+    document.getElementById('resultAvatar').textContent = avatar;
+    document.getElementById('resultDescription').textContent = description;
+
+    // Show earned badges
+    const badgesContainer = document.getElementById('badgesEarned');
+    badgesContainer.innerHTML = '';
+    const uniqueBadges = [...new Set(badges)];
+    uniqueBadges.forEach(badge => {
+        const badgeElement = document.createElement('div');
+        badgeElement.className = 'earned-badge';
+        badgeElement.textContent = badge;
+        badgesContainer.appendChild(badgeElement);
+    });
+}
+
+function shareResult(platform) {
+    const profile = document.getElementById('resultTitle').textContent;
+    const score = totalScore;
+    const text = `Acabei de descobrir meu perfil no Branding Médico: ${profile} com ${score} pontos! 🏥✨ #BrandingMedico #MedicinaDigital`;
+
+    if (platform === 'linkedin') {
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=&text=${encodeURIComponent(text)}`);
+    } else if (platform === 'instagram') {
+        navigator.clipboard.writeText(text).then(() => {
+            alert('Texto copiado! Cole no seu Instagram Stories 📱');
+        });
+    }
+}
+
+function resetGame() {
+    currentQuestion = 0;
+    totalScore = 0;
+    badges = [];
+    answers = {};
+
+    document.getElementById('resultScreen').style.display = 'none';
+    document.getElementById('startScreen').style.display = 'block';
+
+    // Reset all selections
+    document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+        cb.parentElement.classList.remove('selected');
+    });
+
+    document.getElementById('progressBar').style.width = '0%';
+}
+
+function shareToWhatsApp() {
+    // Captura os dados do resultado
+    const profile = document.getElementById('resultTitle').textContent;
+    const score = totalScore;
+    const uniqueBadges = [...new Set(badges)];
+    const badgesText = uniqueBadges.length > 0 ? uniqueBadges.join(', ') : 'Nenhuma badge conquistada';
+
+    // Monta o texto que acompanha o compartilhamento
+    const message = `🏥 *MEU RESULTADO - BRANDING MÉDICO* 🏥
 
 📊 *Perfil:* ${profile}
 ⭐ *Pontuação:* ${score} pontos
@@ -226,12 +216,12 @@ Quando podemos conversar sobre como acelerar minha jornada no branding médico? 
 
 #BrandingMedico #MedicinaDigital`;
 
-            // Número do WhatsApp (formato internacional sem símbolos)
-            const phoneNumber = "5548991341874";
+    // Número do WhatsApp (formato internacional sem símbolos)
+    const phoneNumber = "5548991341874";
 
-            // Monta a URL do WhatsApp
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    // Monta a URL do WhatsApp
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
-            // Abre o WhatsApp
-            window.open(whatsappURL, '_blank');
-        }
+    // Abre o WhatsApp
+    window.open(whatsappURL, '_blank');
+}
