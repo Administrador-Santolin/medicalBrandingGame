@@ -7,7 +7,7 @@
 .background {
     position: absolute;
     width: max-content;
-    background-image: url("back.jpg");
+    background-image: url("./assets/back.jpg");
     filter: blur(8px);
     -webkit-filter: blur(8px);
 
