@@ -50,14 +50,15 @@ body {
 }
 
 .header img{
-    width: 70%;
+    width: 80%;
+    margin: 10px;
 }
 
 .progress-bar {
     background: rgba(255, 255, 255, 0.3);
     height: 8px;
     border-radius: 4px;
-    margin-top: 20px;
+    margin-top: 10px;
     overflow: hidden;
 }
 
