@@ -47,10 +47,10 @@ body {
     padding: 14px;
     text-align: center;
     position: relative;
+}
 
-    &img{
-        width: 70%;
-    }
+.header img{
+    width: 70%;
 }
 
 .progress-bar {
