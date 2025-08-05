@@ -30,13 +30,8 @@ body {
     background: rgba(255, 255, 255, 0.849);
     border-radius: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    max-width: 800px;
     z-index: 2;
-    width: 80%;
     padding: 20px;
     text-align: center;
 }
@@ -50,8 +45,8 @@ body {
 }
 
 .header img{
-    width: 80%;
-    margin: 10px;
+    width: 90%;
+    margin-top: 10px;
 }
 
 .progress-bar {
