@@ -5,16 +5,12 @@
 }
 
 .background {
-    position: absolute;
-    width: max-content;
-    background-image: url("./assets/back.jpg");
+    position: fixed;
+    width: 100%;
+    background-image: url(./assets/back.jpg);
     filter: blur(8px);
     -webkit-filter: blur(8px);
-
-    /* Full height */
     height: 100%;
-
-    /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
