@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sua Jornada no Branding Médico</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="background">
+        <image src="./assets/back.jpg"></image>
+    </div>
+
+    <div class="game-container">
+        <div class="header">
+            <div class="score-display">
+                <span id="currentScore">0</span> pts
+            </div>
+            <h1>🏥 Sua Jornada no Branding Médico</h1>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+        </div>
+
+        <!-- Tela Inicial -->
+        <div id="startScreen" class="start-screen">
+            <div class="start-title">Descubra seu Nível no Branding Médico! 🚀</div>
+            <div class="start-description">
+                Responda 7 perguntas estratégicas e descubra seu nível atual no branding médico.
+                Ganhe pontos, conquiste badges e receba recomendações personalizadas para acelerar sua carreira!
+            </div>
+            <div class="achievements-preview">
+                <strong>🏆 Badges Disponíveis:</strong><br>
+                💪 Workaholic • 📱 Digital Native • 🚀 Empreendedor • 👑 Brand Master
+            </div>
+            <button class="btn" onclick="startGame()">Começar Jornada</button>
+        </div>
+
+        <!-- Questão 1 -->
+        <div id="question1" class="question-container content">
+            <div class="question-title">⏰ Qual seu ritmo de trabalho?</div>
+            <div class="question-subtitle">Vamos entender sua rotina profissional</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(1, 100, 'Equilibrista')" data-value="6-8h">
+                    <div class="option-points">+100</div>
+                    <strong>6-8 horas por dia</strong><br>
+                    <small>Busco equilibrio entre trabalho e vida pessoal</small>
+                    <div class="badge">🎯 Equilibrista</div>
+                </div>
+                <div class="option" onclick="selectOption(1, 150, 'Dedicado')" data-value="8-12h">
+                    <div class="option-points">+150</div>
+                    <strong>8-12 horas por dia</strong><br>
+                    <small>Trabalho intenso, mas ainda tenho tempo para outras atividades</small>
+                    <div class="badge">⚡ Dedicado</div>
+                </div>
+                <div class="option" onclick="selectOption(1, 200, 'Workaholic')" data-value="12h+">
+                    <div class="option-points">+200</div>
+                    <strong>Mais de 12 horas por dia</strong><br>
+                    <small>Medicina é minha vida, trabalho é prioridade</small>
+                    <div class="badge">💪 Workaholic</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Questão 2 -->
+        <div id="question2" class="question-container content">
+            <div class="question-title">💰 Sua faixa de renda mensal atual:</div>
+            <div class="question-subtitle">Informação importante para direcionamento estratégico</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(2, 50, 'Construindo')" data-value="ate-5k">
+                    <div class="option-points">+50</div>
+                    <strong>Até R$ 5.000</strong><br>
+                    <small>Ainda construindo minha base financeira</small>
+                    <div class="badge">🌱 Construindo</div>
+                </div>
+                <div class="option" onclick="selectOption(2, 100, 'Crescendo')" data-value="5-10k">
+                    <div class="option-points">+100</div>
+                    <strong>R$ 5.000 - R$ 10.000</strong><br>
+                    <small>Em crescimento constante</small>
+                    <div class="badge">📈 Crescendo</div>
+                </div>
+                <div class="option" onclick="selectOption(2, 150, 'Estabelecido')" data-value="10k+">
+                    <div class="option-points">+150</div>
+                    <strong>Acima de R$ 10.000</strong><br>
+                    <small>Situação financeira estável</small>
+                    <div class="badge">💎 Estabelecido</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Questão 3 -->
+        <div id="question3" class="question-container content">
+            <div class="question-title">🏥 Sobre plantões médicos:</div>
+            <div class="question-subtitle">Como está sua rotina de plantões?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(3, 0, '')" data-value="nao-faco">
+                    <div class="option-points">+0</div>
+                    <strong>Não faço plantões</strong><br>
+                    <small>Foco apenas na residência/trabalho principal</small>
+                </div>
+                <div class="option" onclick="selectOption(3, 50, 'Complementar')" data-value="1-2-mes">
+                    <div class="option-points">+50</div>
+                    <strong>1-2 plantões por mês</strong><br>
+                    <small>Renda complementar ocasional</small>
+                    <div class="badge">💡 Complementar</div>
+                </div>
+                <div class="option" onclick="selectOption(3, 100, 'Intensivo')" data-value="3+-mes">
+                    <div class="option-points">+100</div>
+                    <strong>3 ou mais por mês</strong><br>
+                    <small>Plantões são parte importante da minha renda</small>
+                    <div class="badge">🔥 Intensivo</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Questão 4 -->
+        <div id="question4" class="question-container content">
+            <div class="question-title">📱 Suas redes sociais ativas:</div>
+            <div class="question-subtitle">Marque todas que você usa ativamente (pode marcar várias)</div>
+            <div class="checkbox-group">
+                <div class="checkbox-item" onclick="toggleCheckbox('instagram')">
+                    <input type="checkbox" id="instagram" value="75">
+                    <div>
+                        <strong>Instagram</strong> (+75 pts)<br>
+                        <small>Stories, posts, engajamento visual</small>
+                        <div class="badge">📸 Visual</div>
+                    </div>
+                </div>
+                <div class="checkbox-item" onclick="toggleCheckbox('linkedin')">
+                    <input type="checkbox" id="linkedin" value="50">
+                    <div>
+                        <strong>LinkedIn</strong> (+50 pts)<br>
+                        <small>Network profissional, artigos, carreira</small>
+                        <div class="badge">💼 Profissional</div>
+                    </div>
+                </div>
+                <div class="checkbox-item" onclick="toggleCheckbox('tiktok')">
+                    <input type="checkbox" id="tiktok" value="40">
+                    <div>
+                        <strong>TikTok</strong> (+40 pts)<br>
+                        <small>Vídeos curtos, tendências</small>
+                        <div class="badge">🎵 Inovador</div>
+                    </div>
+                </div>
+                <div class="checkbox-item" onclick="toggleCheckbox('youtube')">
+                    <input type="checkbox" id="youtube" value="60">
+                    <div>
+                        <strong>YouTube</strong> (+60 pts)<br>
+                        <small>Vídeos educativos, canal próprio</small>
+                        <div class="badge">🎬 Educador</div>
+                    </div>
+                </div>
+                <div class="checkbox-item" onclick="toggleCheckbox('nenhuma')">
+                    <input type="checkbox" id="nenhuma" value="0">
+                    <div>
+                        <strong>Não uso redes sociais profissionalmente</strong> (+0 pts)<br>
+                        <small>Prefiro manter privacidade online</small>
+                    </div>
+                </div>
+            </div>
+            <button class="btn" id="socialBtn" onclick="nextQuestion(4)" disabled>Continuar</button>
+        </div>
+
+        <!-- Questão 5 -->
+        <div id="question5" class="question-container content">
+            <div class="question-title">🎯 Sua marca pessoal médica:</div>
+            <div class="question-subtitle">Como está o desenvolvimento da sua identidade profissional?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(5, 0, 'Potencial')" data-value="nao-tenho">
+                    <div class="option-points">+0</div>
+                    <strong>Ainda não pensei nisso</strong><br>
+                    <small>Foco apenas no trabalho técnico</small>
+                    <div class="badge">💎 Potencial</div>
+                </div>
+                <div class="option" onclick="selectOption(5, 50, 'Planejador')" data-value="pensando">
+                    <div class="option-points">+50</div>
+                    <strong>Estou pensando em desenvolver</strong><br>
+                    <small>Já vejo a importância, mas ainda não comecei</small>
+                    <div class="badge">🤔 Planejador</div>
+                </div>
+                <div class="option" onclick="selectOption(5, 100, 'Executador')" data-value="comecei">
+                    <div class="option-points">+100</div>
+                    <strong>Já comecei a trabalhar nisso</strong><br>
+                    <small>Primeiros passos dados, criando conteúdo</small>
+                    <div class="badge">🚀 Executador</div>
+                </div>
+                <div class="option" onclick="selectOption(5, 150, 'Brand Master')" data-value="estabelecida">
+                    <div class="option-points">+150</div>
+                    <strong>Tenho uma marca bem estabelecida</strong><br>
+                    <small>Sou reconhecido na minha área</small>
+                    <div class="badge">👑 Brand Master</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Questão 6 -->
+        <div id="question6" class="question-container content">
+            <div class="question-title">💸 Experiência com tráfego pago:</div>
+            <div class="question-subtitle">Já investiu em publicidade digital?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(6, 0, '')" data-value="nunca">
+                    <div class="option-points">+0</div>
+                    <strong>Nunca fiz tráfego pago</strong><br>
+                    <small>Ainda não investi em publicidade online</small>
+                </div>
+                <div class="option" onclick="selectOption(6, 75, 'Digital Explorer')" data-value="testei">
+                    <div class="option-points">+75</div>
+                    <strong>Já testei algumas campanhas</strong><br>
+                    <small>Fiz alguns testes, mas sem estratégia clara</small>
+                    <div class="badge">🔍 Digital Explorer</div>
+                </div>
+                <div class="option" onclick="selectOption(6, 150, 'Marketing Pro')" data-value="uso-regularmente">
+                    <div class="option-points">+150</div>
+                    <strong>Uso regularmente</strong><br>
+                    <small>Tenho campanhas ativas e estratégia definida</small>
+                    <div class="badge">📊 Marketing Pro</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Questão 7 -->
+        <div id="question7" class="question-container content">
+            <div class="question-title">🎯 Seu principal objetivo:</div>
+            <div class="question-subtitle">O que você mais deseja alcançar?</div>
+            <div class="options">
+                <div class="option" onclick="selectOption(7, 50, 'Construtor')" data-value="aumentar-pacientes">
+                    <div class="option-points">+50</div>
+                    <strong>Aumentar número de pacientes</strong><br>
+                    <small>Quero expandir minha base de atendimento</small>
+                    <div class="badge">👥 Construtor</div>
+                </div>
+                <div class="option" onclick="selectOption(7, 75, 'Especialista')" data-value="reconhecimento">
+                    <div class="option-points">+75</div>
+                    <strong>Ser reconhecido como especialista</strong><br>
+                    <small>Quero autoridade na minha área</small>
+                    <div class="badge">🏆 Especialista</div>
+                </div>
+                <div class="option" onclick="selectOption(7, 100, 'Empreendedor')" data-value="renda-extra">
+                    <div class="option-points">+100</div>
+                    <strong>Criar fontes de renda extra</strong><br>
+                    <small>Consultoria, cursos, produtos digitais</small>
+                    <div class="badge">💰 Empreendedor</div>
+                </div>
+                <div class="option" onclick="selectOption(7, 125, 'Educador')" data-value="ensinar">
+                    <div class="option-points">+125</div>
+                    <strong>Educar e compartilhar conhecimento</strong><br>
+                    <small>Impactar outros profissionais e pacientes</small>
+                    <div class="badge">📚 Educador</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resultado -->
+        <div id="resultScreen" class="result-container">
+            <div class="result-avatar" id="resultAvatar">🏆</div>
+            <div class="result-title" id="resultTitle">Seu Perfil</div>
+            <div class="result-description" id="resultDescription">Description</div>
+            <div class="badges-earned" id="badgesEarned"></div>
+            <strong>Compartilhe seu resultado com Eduardo e receba o feedback do especialista:</strong><br>
+            <button class="btn" onclick="shareToWhatsApp()" style="background: #25D366; margin-top: 20px;">
+                📱 Enviar para Eduardo via WhatsApp
+            </button>
+        </div>
+        <button class="btn" onclick="resetGame()">Jogar Novamente</button>
+    </div>
+    </div>
+
+    <script src="./script.js">
+    </script>
+</body>
+
+</html>
