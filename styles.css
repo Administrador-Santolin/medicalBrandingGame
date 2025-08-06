@@ -40,12 +40,12 @@ body {
 .header {
     background: linear-gradient(135deg, #7b9aaf, #314c5f);
     color: white;
-    padding: 35px;
+    padding: 12px;
     text-align: center;
     position: relative;
 
     @media screen and (min-width: 768px) {
-        padding: 15px;
+        padding: 35px;
     }
 }
 
