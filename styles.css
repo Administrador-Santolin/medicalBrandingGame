@@ -40,9 +40,13 @@ body {
 .header {
     background: linear-gradient(135deg, #7b9aaf, #314c5f);
     color: white;
-    padding: 14px;
+    padding: 35px;
     text-align: center;
     position: relative;
+
+    @media screen and (min-width: 768px) {
+        padding: 15px;
+    }
 }
 
 .header img {
