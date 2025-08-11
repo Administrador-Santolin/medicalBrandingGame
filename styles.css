@@ -226,6 +226,16 @@ body {
     padding: 8px 15px;
     border-radius: 20px;
     font-size: 14px;
+    width: fit-content;
+}
+
+.earned-score {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    width: fit-content;
+    margin: 0 auto;
 }
 
 .social-share {
