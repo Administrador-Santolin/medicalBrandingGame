@@ -155,20 +155,6 @@ function showResult() {
     });
 }
 
-function shareResult(platform) {
-    const profile = document.getElementById('resultTitle').textContent;
-    const score = totalScore;
-    const text = `Acabei de descobrir meu perfil no Branding Médico: ${profile} com ${score} pontos! 🏥✨ #BrandingMedico #MedicinaDigital`;
-
-    if (platform === 'linkedin') {
-        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=&text=${encodeURIComponent(text)}`);
-    } else if (platform === 'instagram') {
-        navigator.clipboard.writeText(text).then(() => {
-            alert('Texto copiado! Cole no seu Instagram Stories 📱');
-        });
-    }
-}
-
 function shareToWhatsApp() {
     // Captura os dados do resultado
     const profile = document.getElementById('resultTitle').textContent;
