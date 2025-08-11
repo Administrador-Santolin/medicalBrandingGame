@@ -140,6 +140,7 @@ function showResult() {
 
     document.getElementById('resultTitle').textContent = profile;
     document.getElementById('resultAvatar').textContent = avatar;
+    document.getElementById('showScore').textContent = `<h1>${totalScore}/1.100</h1>`;
     document.getElementById('resultDescription').textContent = description;
 
     // Show earned badges
@@ -179,7 +180,7 @@ function shareToWhatsApp() {
     const message = `🏥 *MEU RESULTADO - BRANDING MÉDICO* 🏥
 
 📊 *Perfil:* ${profile}
-⭐ *Pontuação:* ${score}/ pontos
+⭐ *Pontuação:* ${score}/1.100 pontos
 🏆 *Badges Conquistadas:* ${badgesText}
 
 ---
