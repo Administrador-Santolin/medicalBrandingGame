@@ -140,7 +140,7 @@ function showResult() {
 
     document.getElementById('resultTitle').textContent = profile;
     document.getElementById('resultAvatar').textContent = avatar;
-    document.getElementById('showScore').innerHTML = `<h2>${totalScore} de 1.100 pontos.</h2>`;
+    document.getElementById('showScore').innerHTML = `<h2>Você obteve ${totalScore} de 1.100 pontos</h2>`;
     document.getElementById('resultDescription').textContent = description;
 
     // Show earned badges
