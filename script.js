@@ -69,7 +69,7 @@ function toggleCheckbox(checkboxId) {
     item.classList.toggle('selected', checkbox.checked);
 
     // Enable continue button if at least one is selected
-    const anyChecked = document.querySelectorAll('#question4 input[type="checkbox"]:checked').length > 0;
+    const anyChecked = document.querySelectorAll('#question5 input[type="checkbox"]:checked').length > 0;
     document.getElementById('socialBtn').disabled = !anyChecked;
 }
 
@@ -166,25 +166,6 @@ function shareResult(platform) {
             alert('Texto copiado! Cole no seu Instagram Stories 📱');
         });
     }
-}
-
-function resetGame() {
-    currentQuestion = 0;
-    totalScore = 0;
-    badges = [];
-    answers = {};
-
-    document.getElementById('resultScreen').style.display = 'none';
-    document.getElementById('startScreen').style.display = 'block';
-
-    // Reset all selections
-    document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-        cb.checked = false;
-        cb.parentElement.classList.remove('selected');
-    });
-
-    document.getElementById('progressBar').style.width = '0%';
 }
 
 function shareToWhatsApp() {
