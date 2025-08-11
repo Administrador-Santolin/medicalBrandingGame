@@ -75,7 +75,7 @@ function toggleCheckbox(checkboxId) {
 
 function nextQuestion(questionNum) {
     // Calculate points for current question
-    if (questionNum === 4) {
+    if (questionNum === 5) {
         // Handle multiple selection for social media
         let questionPoints = 0;
         let questionBadges = [];
