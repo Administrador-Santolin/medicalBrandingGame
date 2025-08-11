@@ -80,7 +80,7 @@ function nextQuestion(questionNum) {
         let questionPoints = 0;
         let questionBadges = [];
 
-        const checkboxes = document.querySelectorAll('#question4 input[type="checkbox"]:checked');
+        const checkboxes = document.querySelectorAll('#question5 input[type="checkbox"]:checked');
         checkboxes.forEach(cb => {
             questionPoints += parseInt(cb.value);
             const badgeElement = cb.parentElement.querySelector('.badge');
