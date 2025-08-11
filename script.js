@@ -126,15 +126,15 @@ function showResult() {
 
     if (totalScore <= 300) {
         profile = "🌱 Iniciante Digital";
-        avatar = "🌱";
+        avatar = "🏆";
         description = "Você está no início da sua jornada digital! Tem muito potencial para crescer e construir uma marca médica sólida. Vamos trabalhar as bases juntos!";
     } else if (totalScore <= 600) {
         profile = "🚀 Crescimento Acelerado";
-        avatar = "🚀";
+        avatar = "🏆";
         description = "Você já tem movimento e está no caminho certo! É hora de estruturar melhor sua estratégia e acelerar seu crescimento no branding médico.";
     } else {
         profile = "👑 Expert em Construção";
-        avatar = "👑";
+        avatar = "🏆";
         description = "Impressionante! Você já é um profissional estabelecido no digital. Vamos refinar sua estratégia e expandir ainda mais sua marca médica.";
     }
 
@@ -198,23 +198,15 @@ function shareToWhatsApp() {
     const message = `🏥 *MEU RESULTADO - BRANDING MÉDICO* 🏥
 
 📊 *Perfil:* ${profile}
-⭐ *Pontuação:* ${score} pontos
+⭐ *Pontuação:* ${score}/ pontos
 🏆 *Badges Conquistadas:* ${badgesText}
 
 ---
 
 Olá Eduardo! 👋
 
-Acabei de completar o quiz de Branding Médico e gostaria de receber seu feedback especializado sobre meu resultado.
-
-Estou interessado(a) em:
-• Estratégias personalizadas para meu perfil
-• Próximos passos para evoluir minha marca médica
-• Oportunidades de crescimento digital
-
-Quando podemos conversar sobre como acelerar minha jornada no branding médico? 🚀
-
-#BrandingMedico #MedicinaDigital`;
+Acabei de completar o quiz de Branding Médico e gostaria de receber seu feedback especializado sobre meu resultado🚀
+`;
 
     // Número do WhatsApp (formato internacional sem símbolos)
     const phoneNumber = "5548991341874";

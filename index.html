@@ -40,7 +40,7 @@
         <!-- Questão 1 -->
         <div id="question1" class="question-container content">
             <div class="question-title">⏰ Qual seu ritmo de trabalho?</div>
-            <div class="question-subtitle">Vamos entender sua rotina profissional</div>
+            <div class="question-subtitle">Vamos entender como você administra seu tempo.</div>
             <div class="options">
                 <div class="option" onclick="selectOption(1, 100, 'Equilibrista')" data-value="6-8h">
 
@@ -115,54 +115,6 @@
 
         <!-- Questão 4 -->
         <div id="question4" class="question-container content">
-            <div class="question-title">📱 Suas redes sociais ativas:</div>
-            <div class="question-subtitle">Marque todas que você usa ativamente (pode marcar várias)</div>
-            <div class="checkbox-group">
-                <div class="checkbox-item" onclick="toggleCheckbox('instagram')">
-                    <input type="checkbox" id="instagram" value="75">
-                    <div>
-                        <strong>Instagram</strong> (+75 pts)<br>
-                        <small>Stories, posts, engajamento visual</small>
-                        <div class="badge">📸 Visual</div>
-                    </div>
-                </div>
-                <div class="checkbox-item" onclick="toggleCheckbox('linkedin')">
-                    <input type="checkbox" id="linkedin" value="50">
-                    <div>
-                        <strong>LinkedIn</strong> (+50 pts)<br>
-                        <small>Network profissional, artigos, carreira</small>
-                        <div class="badge">💼 Profissional</div>
-                    </div>
-                </div>
-                <div class="checkbox-item" onclick="toggleCheckbox('tiktok')">
-                    <input type="checkbox" id="tiktok" value="40">
-                    <div>
-                        <strong>TikTok</strong> (+40 pts)<br>
-                        <small>Vídeos curtos, tendências</small>
-                        <div class="badge">🎵 Inovador</div>
-                    </div>
-                </div>
-                <div class="checkbox-item" onclick="toggleCheckbox('youtube')">
-                    <input type="checkbox" id="youtube" value="60">
-                    <div>
-                        <strong>YouTube</strong> (+60 pts)<br>
-                        <small>Vídeos educativos, canal próprio</small>
-                        <div class="badge">🎬 Educador</div>
-                    </div>
-                </div>
-                <div class="checkbox-item" onclick="toggleCheckbox('nenhuma')">
-                    <input type="checkbox" id="nenhuma" value="0">
-                    <div>
-                        <strong>Não uso redes sociais profissionalmente</strong> (+0 pts)<br>
-                        <small>Prefiro manter privacidade online</small>
-                    </div>
-                </div>
-            </div>
-            <button class="btn" id="socialBtn" onclick="nextQuestion(4)" disabled>Continuar</button>
-        </div>
-
-        <!-- Questão 5 -->
-        <div id="question5" class="question-container content">
             <div class="question-title">🎯 Sua marca pessoal médica:</div>
             <div class="question-subtitle">Como está o desenvolvimento da sua identidade profissional?</div>
             <div class="options">
@@ -192,6 +144,55 @@
             </div>
         </div>
 
+        <!-- Questão 5 -->
+        <div id="question5" class="question-container content">
+            <div class="question-title">📱 Suas redes sociais ativas:</div>
+            <div class="question-subtitle">Marque todas que você usa ativamente para o seu desenvolvimento profissional
+                (pode marcar várias).</div>
+            <div class="checkbox-group">
+                <div class="checkbox-item" onclick="toggleCheckbox('instagram')">
+                    <input type="checkbox" id="instagram" value="75">
+                    <div>
+                        <strong>Instagram</strong><br>
+                        <small>Stories, posts, engajamento visual</small>
+                        <div class="badge">📸 Visual</div>
+                    </div>
+                </div>
+                <div class="checkbox-item" onclick="toggleCheckbox('linkedin')">
+                    <input type="checkbox" id="linkedin" value="50">
+                    <div>
+                        <strong>LinkedIn</strong><br>
+                        <small>Network profissional, artigos, carreira</small>
+                        <div class="badge">💼 Profissional</div>
+                    </div>
+                </div>
+                <div class="checkbox-item" onclick="toggleCheckbox('tiktok')">
+                    <input type="checkbox" id="tiktok" value="40">
+                    <div>
+                        <strong>TikTok</strong><br>
+                        <small>Vídeos curtos, tendências</small>
+                        <div class="badge">🎵 Inovador</div>
+                    </div>
+                </div>
+                <div class="checkbox-item" onclick="toggleCheckbox('youtube')">
+                    <input type="checkbox" id="youtube" value="60">
+                    <div>
+                        <strong>YouTube</strong><br>
+                        <small>Vídeos educativos, canal próprio</small>
+                        <div class="badge">🎬 Educador</div>
+                    </div>
+                </div>
+                <div class="checkbox-item" onclick="toggleCheckbox('nenhuma')">
+                    <input type="checkbox" id="nenhuma" value="0">
+                    <div>
+                        <strong>Não uso redes sociais profissionalmente</strong><br>
+                        <small>Prefiro manter privacidade online</small>
+                    </div>
+                </div>
+            </div>
+            <button class="btn" id="socialBtn" onclick="nextQuestion(4)" disabled>Continuar</button>
+        </div>
+
         <!-- Questão 6 -->
         <div id="question6" class="question-container content">
             <div class="question-title">💸 Experiência com tráfego pago:</div>
@@ -218,7 +219,7 @@
         <!-- Questão 7 -->
         <div id="question7" class="question-container content">
             <div class="question-title">🎯 Seu principal objetivo:</div>
-            <div class="question-subtitle">O que você mais deseja alcançar?</div>
+            <div class="question-subtitle">Das opções abaixo, qual é a sua maior prioridade?</div>
             <div class="options">
                 <div class="option" onclick="selectOption(7, 50, 'Construtor')" data-value="aumentar-pacientes">
 
